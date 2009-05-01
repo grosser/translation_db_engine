@@ -1,0 +1,17 @@
+<% new = @translation_key.new_record? %>
+<h1><%= @translation_key.key || "New translation" %></h1>
+<% form_for @translation_key do |f|%>
+  <p>
+    <%= f.label :key %>
+    <%= f.text_area :key, :size=>'80x4' %>
+  </p>
+
+  <% f.fields_for :translations do |tf|%>
+    <p>
+      <%= tf.label :text, tf.object.locale %>
+      <%= tf.text_area :text, :size=>'80x4' %>
+    </p>
+  <% end %>
+
+  <%= f.submit(new ? "Create" : "Save") %>
+<% end %>
