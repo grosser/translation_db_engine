@@ -1,5 +1,4 @@
 A interface for database stored translation editing as rails engine.  
-Very alpha/hacky atm, but already used runs in production ;D
 
 Setup
 =====
@@ -17,12 +16,14 @@ Setup
  - Make available locales return the locales you need
  - Start translating!
 
-Visit `/translation_keys` in your browser.
+###Thereafter...
+ - Setup authentification by copying and modifying translation_db_engine.yml into RAILS_ROOT/config
+ - Visit `/translation_keys` in your browser.
 
 TODO
 ====
- - authentification (atm i just added http basic auth in my local checkout...)
  - layout/title/styles/js/search
+ - po/mo to db conversion task
 
 Author
 ======

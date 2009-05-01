@@ -1,4 +1,5 @@
 class TranslationKeysController < ActionController::Base
+  before_filter :authenticate
   before_filter :find_translation_key, :only=>%w[show edit update]
 
   def index
@@ -38,7 +39,15 @@ class TranslationKeysController < ActionController::Base
   end
 
   protected
-  
+
+  def authenticate
+    auth = YAML::load(File.read(Rails.root.join('config/translation_db_engine.yml')))['auth'] rescue return
+    
+    authenticate_or_request_with_http_basic do |username, password|
+      username == auth['name'] && password == auth['password']
+    end
+  end
+
   def find_translation_key
     @translation_key = TranslationKey.find(params[:id])
   end

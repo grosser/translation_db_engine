@@ -1,0 +1,4 @@
+#place this file in RAILS_ROOT/config and change the name/password
+auth:
+  name: translator
+  password: test
