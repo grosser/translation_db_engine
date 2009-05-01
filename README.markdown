@@ -3,11 +3,11 @@ Very alpha/hacky atm, but already used runs in production ;D
 
 Setup
 =====
-    `script/plugin install git://github.com/grosser/translation_db.git `
+    script/plugin install git://github.com/grosser/translation_db.git
 
 ###Default
- - Setup FastGettext(>= 0.4.5) to run from database and include the db_models, see [FastGettext Readme](http://github.com/grosser/fast_gettext)
- - Run migrations from fast_gettext/examples/migration
+ - Setup FastGettext(>= 0.4.6) to run from database and include the db_models, see [FastGettext Readme](http://github.com/grosser/fast_gettext)
+ - Run [migrations to create models](http://github.com/grosser/fast_gettext/blob/master/examples/db/migration.rb)
  - Add initial translations through import or create them through the script/console (you NEED a translation for every locale so that `available_locales` is populated and edit fields are shown correctly)
  - Start translating!
 
