@@ -12,13 +12,16 @@
   </thead>
   <tbody>
     <% @translation_keys.each do |key| %>
-      <tr>
+      <tr class="<%= cycle "even","odd"%>">
         <td><%= key.key %></td>
         <% translations = key.translations.map{|t| [t.locale, t]} %>
         <% locales.each do |locale| %>
           <td><%= translations.assoc(locale)[1].text if translations.assoc(locale) %></td>
         <% end %>
-        <td><%= link_to "Edit", key %></td>
+        <td>
+          <%= link_to '<b style="color:red">X</b>', key, :confirm=>"Delete key #{key.key} ?", :method=>:delete %>
+          <%= link_to "Edit", key %>
+        </td>
       </tr>
     <% end %>
   </tbody>

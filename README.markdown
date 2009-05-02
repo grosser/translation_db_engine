@@ -1,4 +1,5 @@
-A interface for database stored translation editing as rails engine.  
+A interface for database stored translation editing as rails engine.
+Uses your styles/layout and fits seamlessly.  
 
 Setup
 =====
@@ -23,7 +24,8 @@ Setup
 
 TODO
 ====
- - layout/title/styles/js/search
+ - specs
+ - search + ordering + pagination
  - po/mo to db conversion task
 
 Author

@@ -1,6 +1,15 @@
 class TranslationKeysController < ActionController::Base
   before_filter :authenticate
-  before_filter :find_translation_key, :only=>%w[show edit update]
+  before_filter :find_translation_key, :only=>%w[show edit update destroy]
+
+  #use host layout/helpers
+  helper :all
+  layout :choose_layout
+
+  #prevent 'method missing' for normally controller-side helpers
+  def current_user;nil;end
+  def logged_in?;false;end
+  helper_method :current_user, :logged_in?
 
   def index
     @translation_keys = TranslationKey.find(:all)
@@ -15,8 +24,10 @@ class TranslationKeysController < ActionController::Base
   def create
     @translation_key = TranslationKey.new(params[:translation_key])
     if @translation_key.save
+      flash[:notice] = 'Created!'
       redirect_to translation_key_path(@translation_key)
     else
+      flash[:error] = 'Failed to save!'
       render :action=>:edit
     end
   end
@@ -30,7 +41,7 @@ class TranslationKeysController < ActionController::Base
 
   def update
     if @translation_key.update_attributes(params[:translation_key])
-      flash[:notice] = 'Succesfully saved!'
+      flash[:notice] = 'Saved!'
       redirect_to @translation_key
     else
       flash[:error] = 'Failed to save!'
@@ -38,13 +49,25 @@ class TranslationKeysController < ActionController::Base
     end
   end
 
+  def destroy
+    @translation_key.destroy
+    redirect_to translation_keys_path
+  end
+
   protected
 
+  def self.config
+    @@config ||= YAML::load(File.read(Rails.root.join('config','translation_db_engine.yml'))).with_indifferent_access rescue {}
+  end
+
+  def choose_layout
+    @@config[:layout] || 'application'
+  end
+
   def authenticate
-    auth = YAML::load(File.read(Rails.root.join('config/translation_db_engine.yml')))['auth'] rescue return
-    
+    return unless auth = self.class.config[:auth]
     authenticate_or_request_with_http_basic do |username, password|
-      username == auth['name'] && password == auth['password']
+      username == auth[:name] && password == auth[:password]
     end
   end
 
