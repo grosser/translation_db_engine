@@ -8,7 +8,7 @@ Setup
 ###Default
  - Setup FastGettext(>= 0.4.7) to run from database and include the db_models, see [FastGettext Readme](http://github.com/grosser/fast_gettext)
  - Run [migrations to create models](http://github.com/grosser/fast_gettext/blob/master/examples/db/migration.rb)
- - Start translating!
+ - Start translating! (it is as fast as mo/po based translations because of FastGettext`s caching)
 
 ### Personalized
  - Setup whichever I18n framework supports a database
