@@ -33,6 +33,7 @@ class TranslationKeysController < ActionController::Base
   end
 
   def show
+    add_default_locales_to_translation
     render :action=>:edit
   end
 
@@ -76,8 +77,10 @@ class TranslationKeysController < ActionController::Base
   end
 
   def add_default_locales_to_translation
-    TranslationKey.available_locales.each do |locale|
-      @translation_key.translations.build(:locale=>locale)
+    existing_translations = @translation_key.translations.map(&:locale)
+    missing_translations = TranslationKey.available_locales.map(&:to_sym) - existing_translations.map(&:to_sym)
+    missing_translations.each do |locale|
+      @translation_key.translations.build(:locale => locale)
     end
   end
 end
