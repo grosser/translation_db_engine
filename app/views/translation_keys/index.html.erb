@@ -19,7 +19,7 @@
           <td><%= translations.assoc(locale)[1].text if translations.assoc(locale) %></td>
         <% end %>
         <td>
-          <%= link_to '<b style="color:red">X</b>', key, :confirm=>"Delete key #{key.key} ?", :method=>:delete %>
+          <%= link_to content_tag(:b, 'X', :style => 'color:red'), key, :confirm=>"Delete key #{key.key} ?", :method=>:delete %>
           <%= link_to "Edit", key %>
         </td>
       </tr>
