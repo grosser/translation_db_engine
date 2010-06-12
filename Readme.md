@@ -5,9 +5,9 @@ Setup
 =====
     script/plugin install git://github.com/grosser/translation_db_engine.git
 
-###Default
+### Default
  - Setup FastGettext(>= 0.4.7) to run from database and include the db_models, see [FastGettext Readme](http://github.com/grosser/fast_gettext)
- - Run [migrations to create models](http://github.com/grosser/fast_gettext/blob/master/examples/db/migration.rb)
+ - `rails generate migration CreateTranslationTables` and paste in [migrations to create models](http://github.com/grosser/fast_gettext/blob/master/examples/db/migration.rb)
  - Start translating! (it is as fast as mo/po based translations because of FastGettext`s caching)
 
 ### Personalized
@@ -16,7 +16,7 @@ Setup
  - Make available locales return the locales you need
  - Start translating!
 
-###Thereafter...
+### Thereafter...
  - Setup authentification by copying and modifying translation_db_engine.yml into RAILS_ROOT/config
  - `rake sync_po_to_db` to load all translations from .po files into the database (given they lie in /locale), requires [pomo po parser](http://github.com/grosser/pomo)
  - (If not translations exist yet) Add initial translations through import or create them through the script/console (you NEED a translation for every locale so that `available_locales` is populated and edit fields are shown correctly)
