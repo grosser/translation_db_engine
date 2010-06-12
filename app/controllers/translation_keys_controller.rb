@@ -62,7 +62,7 @@ class TranslationKeysController < ActionController::Base
   end
 
   def choose_layout
-    @@config[:layout] || 'application'
+    self.class.config[:layout] || 'application'
   end
 
   def authenticate
