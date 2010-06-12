@@ -4,9 +4,9 @@
 <table>
   <thead>
     <tr>
-      <td>Key</td>
+      <th>Key</th>
       <% locales.each do |locale| %>
-        <td><%= locale%></td>
+        <th><%= locale%></th>
       <% end %>
     </tr>
   </thead>
@@ -14,9 +14,9 @@
     <% @translation_keys.each do |key| %>
       <tr class="<%= cycle "even","odd"%>">
         <td><%= key.key %></td>
-        <% translations = key.translations.map{|t| [t.locale, t]} %>
         <% locales.each do |locale| %>
-          <td><%= translations.assoc(locale)[1].text if translations.assoc(locale) %></td>
+          <% translation = key.translations.detect{|t| t.locale == locale } %>
+          <td><%= translation.text if translation %></td>
         <% end %>
         <td>
           <%= link_to content_tag(:b, 'X', :style => 'color:red'), key, :confirm=>"Delete key #{key.key} ?", :method=>:delete %>
