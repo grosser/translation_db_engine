@@ -57,16 +57,16 @@ class TranslationKeysController < ActionController::Base
 
   protected
 
-  def self.config
-    @@config ||= YAML::load(File.read(Rails.root.join('config','translation_db_engine.yml'))).with_indifferent_access rescue {}
+  def self.tbe_config
+    @@tbe_config ||= YAML::load(File.read(Rails.root.join('config','translation_db_engine.yml'))).with_indifferent_access rescue {}
   end
 
   def choose_layout
-    self.class.config[:layout] || 'application'
+    self.class.tbe_config[:layout] || 'application'
   end
 
   def authenticate
-    return unless auth = self.class.config[:auth]
+    return unless auth = self.class.tbe_config[:auth]
     authenticate_or_request_with_http_basic do |username, password|
       username == auth[:name] && password == auth[:password]
     end
