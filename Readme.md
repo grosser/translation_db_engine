@@ -1,9 +1,9 @@
 A interface for database stored translation editing as rails engine.
-Uses your styles/layout and fits seamlessly.  
+Uses your styles/layout and fits seamlessly.
 
 Setup
 =====
-    script/plugin install git://github.com/grosser/translation_db_engine.git
+    rails plugin install git://github.com/grosser/translation_db_engine.git
 
 ### Default
  - Setup FastGettext(>= 0.4.7) to run from database and include the db_models, see [FastGettext Readme](http://github.com/grosser/fast_gettext)
@@ -29,6 +29,6 @@ TODO
 
 Author
 ======
-[Michael Grosser](http://pragmatig.wordpress.com)  
-grosser.michael@gmail.com  
+[Michael Grosser](http://grosser.it)<br/>
+michael@grosser.it<br/>
 Hereby placed under public domain, do what you want, just do not hold me accountable...
