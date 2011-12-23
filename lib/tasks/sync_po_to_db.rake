@@ -30,6 +30,9 @@ task :sync_po_to_db => :environment do
       next if key.translations.detect{|text| text.locale == locale}
 
       #store translations
+      # make sure we store nil (NULL) values if msgstr is blank
+      # so that the _() method will see that the string is not translated
+      t.msgstr.blank? ? t.msgstr = nil : t.msgstr = t.msgstr
       puts "Creating text #{locale}:#{t.msgstr}"
       key.translations.create!(:locale=>locale, :text=>t.msgstr)
     end
