@@ -1,15 +1,6 @@
-class TranslationKeysController < ActionController::Base
+class TranslationKeysController < ApplicationController
   before_filter :authenticate
   before_filter :find_translation_key, :only=>%w[show edit update destroy]
-
-  #use host layout/helpers
-  helper :all
-  layout :choose_layout
-
-  #prevent 'method missing' for normally controller-side helpers
-  def current_user;nil;end
-  def logged_in?;false;end
-  helper_method :current_user, :logged_in?
 
   def index
     @translation_keys = TranslationKey.find(:all)
